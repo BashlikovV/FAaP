@@ -1,0 +1,61 @@
+Program LBR_3;
+
+Const
+  N = 10;
+
+Var
+  Mas: array [1 .. N] of Integer = (1,2,3,3,3,5,5,5,5,7);
+  AnswerMas: array [1 .. N] of Integer;
+  MaxSeries, CurrentSeries: Integer;
+  CurrentValue, PreviouValue, NextValue: Integer;
+  First, Last: Integer;
+  i, j: Integer;
+
+Begin
+  {while i <= N do
+  Begin
+    j := Random(3);
+    Mas[i] := j;
+    inc(i);
+  End;}
+
+  i := 1;
+  j := 2;
+  CurrentSeries := 0;
+  While j <= Length(Mas) do
+  Begin
+    CurrentValue := Mas[j];
+    PreviouValue := Mas[j - 1];
+    NextValue := Mas[j + 1];
+    if (CurrentValue = PreviouValue) or (CurrentValue = NextValue) then
+    Begin
+      Inc(CurrentSeries);
+      AnswerMas[j] := Mas[j];
+    End
+    else if CurrentValue <> NextValue then
+    Begin
+      MaxSeries := CurrentSeries;
+      CurrentSeries := 0;
+    End;
+    Inc(j);
+  End;
+
+  j := 1;
+  Write('Max Series = ');
+  While j <= Length(AnswerMas) do
+  Begin
+    if AnswerMas[j] <> 0 then
+    begin
+    Write(AnswerMas[j], ' ');
+    end
+    else
+    if AnswerMas[j] <> AnswerMas[j - 1] then
+    Begin
+      WriteLn(' and ');
+    End;
+    Inc(j);
+  End;
+
+  ReadLn;
+
+End.

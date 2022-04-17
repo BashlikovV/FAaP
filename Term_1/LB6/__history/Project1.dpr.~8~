@@ -1,0 +1,88 @@
+Program project1;
+
+Type
+  MasOfAnimals = (Rat, Bull, Tiger, Hare, Dragon, Snake, Horse, Sheep, Monkey,
+    Cock, Dog, Pig);
+  MasOfColors = (Blue, Red, Yellow, White, Black);
+
+var
+
+  Year, NumberOfColor, NumberOfAnimal: Integer;
+  Animals: array [1..12] of MasOfAnimals = (Rat, Bull, Tiger, Hare, Dragon,
+                                            Snake, Horse, Sheep, Monkey, Cock,
+                                            Dog, Pig);
+  Name: MasOfAnimals;
+  Color: MasOfColors;
+  Error: Integer;
+  Str: String;
+
+begin
+  While (Str <> 'N') do
+  Begin
+    Repeat
+      WriteLn('Type the number of year');
+      ReadLn(Str);
+      val(Str, Year, Error);
+      if (Year < 0) then Error := 1;
+      If (Error <> 0) then Writeln('Incorrect value');
+    Until (Error = 0);
+
+    NumberOfColor := ((((Year + 6) mod 10) + 2) div 2);
+    NumberOfAnimal := ((Year + 8) mod 12 + 1);
+
+    case NumberOfColor of
+      1: Color := Blue;
+      2: Color := Red;
+      3: Color :=Yellow;
+      4: Color := White;
+      5: Color := Black;
+    end;
+
+    case NumberOfAnimal of
+      1: Name := Rat;
+      2: Name := Bull;
+      3: Name := Tiger;
+      4: Name := Hare;
+      5: Name := Dragon;
+      6: Name := Snake;
+      7: NAme := Horse;
+      8: name := Sheep;
+      9: Name := Monkey;
+      10: Name := Cock;
+      11: Name := Dog;
+      12: Name := Pig;
+    end;
+
+    Write('Year ', Year, ' of ');
+
+    case Color of
+      Blue: Write(' Blue ');
+      Red: Write(' Red ');
+      Yellow: Write(' Yellow ');
+      White: Write(' White ');
+      Black: Write(' Black ');
+    end;
+
+    Write(' ');
+
+    case Name of
+      Rat: Write(' Rat ');
+      Bull: Write(' Bull ');
+      Tiger: Write(' Tiger ');
+      Hare: Write(' Hare ');
+      Dragon: Write(' Dragon ');
+      Snake: Write(' Snake ');
+      Horse: Write(' Horse ');
+      Sheep: Write(' Sheep ');
+      Monkey: Write(' Monkey ');
+      Cock: Write(' Cock ');
+      Dog: Write(' Dog ');
+      Pig: Write(' Pig ');
+    end;
+    WriteLn(#10 ,'Try again?(Y,N)');
+    ReadLn(Str);
+  End;
+
+  readln;
+
+end.

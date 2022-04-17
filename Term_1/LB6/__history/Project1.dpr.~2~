@@ -1,0 +1,42 @@
+Program project1;
+
+Const
+  Years = 12;
+  Colors = 5;
+
+var
+  MasOfAnimals: array [1 .. Years] of String = (
+    ' Rat ',
+    ' bull ',
+    ' tiger ',
+    ' hare ',
+    ' dragon ',
+    ' Snake ',
+    ' horse ',
+    ' Sheep ',
+    ' Monkey ',
+    ' Cock ',
+    ' Dog ',
+    ' Pig '
+  );
+  MasOfColors: array [1 .. Colors] of String = (
+    ' Blue ',
+    ' Red ',
+    ' Yellow ',
+    ' White ',
+    ' Black '
+  );
+  Year, NumberOfColor, NumberOfAnimal: Integer;
+
+begin
+  Writeln('Введите год: ГГГГ');
+  readln(Year);
+  NumberOfColor := ((((Year + 6) mod 10) + 2) div 2);
+  NumberOfAnimal := ((Year + 8) mod 12 + 1);
+
+  Writeln('Год: ', Year, ' - год ', MasOfColors[NumberOfColor], ' ',
+    MasOfAnimals[NumberOfAnimal]);
+
+  readln;
+
+end.

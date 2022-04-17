@@ -1,0 +1,32 @@
+program project1;
+
+var
+  p, q, i, s, j: integer;
+
+begin
+  s := 1;
+  writeln('Введите число P ');
+  readln(p);
+  writeln('Введите число Q');
+  readln(q);
+  for i := 2 to round(sqrt(q)) + 1 do // Цикл находящий делители числа Q
+  begin
+    if q mod i = 0 then // Находим все делители числа Q
+    begin
+      for j := 2 to round(sqrt(i)) + 1 do // Цикл проверки на простоту чисел P, i
+      begin
+        if (i mod j = 0) and (p mod j = 0) then
+        // Если P и I делятся без остатка, то они составные
+          s := 0;
+      end;
+      if s = 1 then // Если P и i делятся с остатком, то они простые
+      begin
+        writeln('Делитель числа ', q, ':= ', i,
+          ' - взаимно простое число с числом ', p);
+      end;
+      s := 1;
+    end;
+  end;
+  readln;
+
+end.

@@ -1,0 +1,50 @@
+Program project1;
+
+Type
+  MasOfAnimals = (
+     Rat,
+     bull,
+     tiger,
+     hare,
+     dragon,
+     Snake,
+     horse,
+     Sheep,
+     Monkey,
+     Cock,
+     Dog,
+     Pig
+  );
+  MasOfColors = (
+     Blue,
+     Red,
+     Yellow,
+     White,
+     Black
+  );
+
+var
+  
+  Year, NumberOfColor, NumberOfAnimal: Integer;
+  Name: MasOfAnimals;
+  Color: MasOfColors;
+begin
+  Writeln('Введите год: ');
+  readln(Year);
+  NumberOfColor := ((((Year + 6) mod 10) + 2) div 2);
+  NumberOfAnimal := ((Year + 8) mod 12 + 1);
+
+  case NumberOfColor of
+    1: Color := Blue;
+    2: Color := Red;
+    4: Color := Yellow;
+    5: Color := White;
+    6: Color := Black;
+  end;
+
+  Writeln('Год: ', Year);
+  Write(color);
+
+  readln;
+
+end.

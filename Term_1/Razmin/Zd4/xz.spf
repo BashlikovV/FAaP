@@ -1,0 +1,892 @@
+SchemeList
+9
+Scheme
+1
+Zd4
+ElList
+10
+Terminator
+Zd4
+1
+Input
+Вывод 'Vvedite 1 chislo: '
+Simple
+a:=EnterNum(na)
+Input
+Вывод 'Operator (+,-,*,/): '
+Input
+Ввод op
+Input
+Вывод 'Vvedite 2 chislo: '
+Simple
+b:=EnterNum(nb)
+Case
+Solve
+op=
+CaseList
+5
+Иначе
+ElList
+1
+Simple
+rez:=Zero
+'-'
+ElList
+1
+Simple
+rez:=Min(a,b,na,nb,nrez)
+'+'
+ElList
+1
+Simple
+rez:=Add(a,b,na,nb,nrez)
+'*'
+ElList
+1
+Simple
+rez:=Multiply(a,b,na,nb,nrez)
+'/'
+ElList
+1
+Simple
+rez:=Divide(a,b,na,nb,nrez)
+Input
+Вывод 'Rezultat: '
+Cycle
+Scheme
+0
+
+ElList
+1
+Input
+Вывод rez[i]
+CylceBorderOpen
+A7
+i := 101-nrez; i <= 100
+CylceBorderClose
+A7
+i := i + 1
+Scheme
+1
+GetN(a:LongNum
+ElList
+3
+Terminator
+GetN(a:LongNum
+1
+Cycle
+Scheme
+0
+
+ElList
+1
+If
+Solve
+(a[i] <> 0)
+Scheme
+0
+
+ElList
+2
+Simple
+GetN:=101-i
+Simple
+Exit
+Scheme
+0
+
+ElList
+0
+CylceBorderOpen
+A1
+i := 101-n; i <= 100
+CylceBorderClose
+A1
+i := i + 1
+Simple
+GetN:=0
+Scheme
+1
+Zero:LongNum
+ElList
+3
+Terminator
+Zero:LongNum
+1
+Cycle
+Scheme
+0
+
+ElList
+1
+Simple
+rez[i]:=0
+CylceBorderOpen
+A1
+i := 1; i <= 100
+CylceBorderClose
+A1
+i := i + 1
+Simple
+Zero:=rez
+Scheme
+1
+EnterNum (out n:Integer ) : LongNum
+ElList
+6
+Terminator
+EnterNum (out n:Integer ) : LongNum
+1
+Input
+Ввод s
+Simple
+rez:=Zero
+Cycle
+Scheme
+0
+
+ElList
+1
+Simple
+rez[100-length(s)+i]:= strtoint(s[i])
+CylceBorderOpen
+A1
+i := 1; i <= length(s)
+CylceBorderClose
+A1
+i := i + 1
+Simple
+n:= GetN(rez,length(s))
+Simple
+EnterNum:=rez
+Scheme
+1
+Compare (a,b:LongNum
+ElList
+2
+Terminator
+Compare (a,b:LongNum
+1
+If
+Solve
+na>nb
+Scheme
+0
+
+ElList
+1
+Simple
+Compare:=More
+Scheme
+0
+
+ElList
+1
+If
+Solve
+na<nb
+Scheme
+0
+
+ElList
+1
+Simple
+Compare:=Less
+Scheme
+0
+
+ElList
+2
+Cycle
+Scheme
+0
+
+ElList
+1
+If
+Solve
+a[i] > b[i]
+Scheme
+0
+
+ElList
+2
+Simple
+Compare:=More
+Simple
+Exit
+Scheme
+0
+
+ElList
+1
+If
+Solve
+a[i] < b[i]
+Scheme
+0
+
+ElList
+2
+Simple
+Compare:=Less
+Simple
+Exit
+Scheme
+0
+
+ElList
+0
+CylceBorderOpen
+A1
+i := 101-na; i <= 100
+CylceBorderClose
+A1
+i := i + 1
+Simple
+Compare:=Equally
+Scheme
+1
+Add(a,b:LongNum
+ElList
+6
+Terminator
+Add(a,b:LongNum
+1
+Simple
+rez:=Zero
+If
+Solve
+na>=nb
+Scheme
+0
+
+ElList
+1
+Simple
+n:=na
+Scheme
+0
+
+ElList
+1
+Simple
+n:=nb
+Cycle
+Scheme
+0
+
+ElList
+3
+Simple
+c:=rez[i]+a[i]+b[i]
+Simple
+rez[i]:= c mod 10
+Simple
+rez[i-1]:=  c div 10
+CylceBorderOpen
+A1
+i := 100; i >= 101-n
+CylceBorderClose
+A1
+i := i - 1
+If
+Solve
+rez[100-n] <> 0
+Scheme
+0
+
+ElList
+1
+Simple
+nrez:= n+1
+Scheme
+0
+
+ElList
+1
+Simple
+nrez:=n
+Simple
+Add:=rez
+Scheme
+1
+Min(a,b:LongNum
+ElList
+6
+Terminator
+Min(a,b:LongNum
+1
+Simple
+rez:=Zero()
+Simple
+n:=na
+Cycle
+Scheme
+0
+
+ElList
+2
+Simple
+c:=a[i]-b[i]+rez[i]
+If
+Solve
+c< 0
+Scheme
+0
+
+ElList
+2
+Simple
+rez[i]:=  (10+c)
+Simple
+rez[i-1]:=-1
+Scheme
+0
+
+ElList
+1
+Simple
+rez[i]:=  c
+CylceBorderOpen
+A1
+i := 100; i >= 101-n
+CylceBorderClose
+A1
+i := i - 1
+Simple
+nrez:=GetN(rez,n)
+Simple
+Min:=rez
+Scheme
+1
+Multiply(a,b:LongNum
+ElList
+7
+Terminator
+Multiply(a,b:LongNum
+1
+Simple
+rez:=Zero
+Simple
+t:=Zero
+Simple
+n:=0
+Cycle
+Scheme
+0
+
+ElList
+1
+Cycle
+Scheme
+0
+
+ElList
+5
+Simple
+c:=a[j]*b[i]
+Simple
+t[j+i-100]:=c mod 10
+Simple
+t[j+i-100-1]:=c div 10
+Simple
+rez:= Add(rez,t,n,102-(j+i-100),n)
+Simple
+t:=Zero
+CylceBorderOpen
+A1
+j := 100; j >= 101-na
+CylceBorderClose
+A1
+j := j - 1
+CylceBorderOpen
+A2
+i := 100; i >= 101-nb
+CylceBorderClose
+A2
+i := i - 1
+If
+Solve
+rez[101-n] <> 0
+Scheme
+0
+
+ElList
+1
+Simple
+nrez:= n
+Scheme
+0
+
+ElList
+1
+Simple
+nrez:=n-1
+Simple
+Multiply:=rez
+Scheme
+1
+Divide (a,b:LongNum
+ElList
+13
+Terminator
+Divide (a,b:LongNum
+1
+Simple
+t:=Zero
+Simple
+prez:=Zero
+Simple
+nrez:=0
+Simple
+rez:=Zero
+Simple
+n:=0
+Cycle
+Scheme
+0
+
+ElList
+1
+Simple
+prez[101-nb+i-n]:=a[101-na+i-n]
+CylceBorderOpen
+A1
+i := n; i <= n+nb-1
+CylceBorderClose
+A1
+i := i + 1
+Simple
+nprez:=nb
+Simple
+n:=n+nb
+Cycle
+Scheme
+0
+
+ElList
+6
+If
+Solve
+((Compare(prez,Zero,nprez,nprez) <> Equally) and (n<>na)) and (Compare(prez,b,nprez,nb) = Less)
+Scheme
+0
+
+ElList
+6
+Cycle
+Scheme
+0
+
+ElList
+1
+Simple
+prez[i-1]:=prez[i]
+CylceBorderOpen
+A2
+i := 101-nb; i <= 100
+CylceBorderClose
+A2
+i := i + 1
+Simple
+prez[100]:=a[101-na+n]
+Simple
+nprez:=nprez+1
+Simple
+nrez:=nrez+1
+Simple
+rez[nrez]:=0
+Simple
+n:=n+1
+Scheme
+0
+
+ElList
+0
+Cycle
+Scheme
+0
+
+ElList
+4
+Simple
+t[100]:=i
+Simple
+t:=Multiply(b,t,nb,1,tempn)
+Simple
+x:= Compare(t,prez,tempn,nprez)
+If
+Solve
+(x <> Less)
+Scheme
+0
+
+ElList
+3
+Simple
+nrez:=nrez+1
+If
+Solve
+x = More
+Scheme
+0
+
+ElList
+2
+Simple
+rez[nrez]:=i-1
+Simple
+prez:= Min(prez,Min(t,b,tempn,nb,tempn),nprez,tempn,nprez)
+Scheme
+0
+
+ElList
+2
+Simple
+rez[nrez]:=i
+Simple
+prez:=Min(prez,t,nprez,tempn,nprez)
+Simple
+break
+Scheme
+0
+
+ElList
+0
+CylceBorderOpen
+A3
+i := 0; i <= 10
+CylceBorderClose
+A3
+i := i + 1
+Cycle
+Scheme
+0
+
+ElList
+1
+Simple
+prez[i-1]:=prez[i]
+CylceBorderOpen
+A4
+i := 101-nb; i <= 100
+CylceBorderClose
+A4
+i := i + 1
+Simple
+prez[100]:=a[101-na+n]
+Simple
+nprez:=nprez+1
+Simple
+n:=n+1
+CylceBorderOpen
+A5
+
+CylceBorderClose
+A5
+n > na
+Cycle
+Scheme
+0
+
+ElList
+2
+Simple
+rez[100-nrez+i]:=rez[i]
+Simple
+rez[i]:=0
+CylceBorderOpen
+A6
+i := 1; i <= nrez
+CylceBorderClose
+A6
+i := i + 1
+Simple
+Divide:=rez
+If
+Solve
+rez[101-nrez] <> 0
+Scheme
+0
+
+ElList
+1
+Simple
+nrez:= nrez
+Scheme
+0
+
+ElList
+1
+Simple
+nrez:=nrez-1
+
+program Zd4;
+
+{$APPTYPE CONSOLE}
+
+uses
+  SysUtils;
+
+type
+  LongNum=Array[1..100] of Integer;
+  TCompareRez = (Equally, More, Less);
+var
+  nb,nrez,i:Integer;
+  b,rez: LongNum;
+
+//Функция определяет длинну числа
+function GetN(a:LongNum; n:Integer = 1):Integer;
+var
+  i:Integer;
+begin
+  for i := 101-n to 100 do
+  if (a[i] <> 0)then  //Нашли отличную от 0 цифру - здесь и начинается число
+  begin
+    GetN:=101-i ;
+    Exit;
+  end;
+  GetN:=0;
+end;
+
+//Число равное 0
+function Zero:LongNum;
+var
+  rez:LongNum;
+  i:Integer ;
+begin
+    for i := 1 to 100 do
+      rez[i]:=0;
+    Zero:=rez;
+end;
+
+//Ввод числа
+function EnterNum (out n:Integer ) : LongNum;
+var
+  s:String;
+  i:Integer;
+  rez:LongNum;
+begin
+  Readln(s);
+  rez:=Zero;
+  for i := 1  to  length(s)   do
+    rez[100-length(s)+i]:= strtoint(s[i]);  //В массив число в носим в конец
+  n:= GetN(rez,length(s));                  //Длину числа получаем из функции
+  EnterNum:=rez;
+end;
+
+function Compare (a,b:LongNum; na,nb:Integer):TCompareRez;
+var
+  i:Integer;
+begin
+  if na>nb then
+    Compare:=More
+  else if na<nb then
+    Compare:=Less
+  else
+  begin
+    for i:= 101-na to 100 do
+      if a[i] > b[i] then
+      begin
+        Compare:=More;
+        Exit;
+      end
+      else if a[i] < b[i] then
+      begin
+        Compare:=Less;
+        Exit;
+      end;
+    Compare:=Equally;
+  end
+end;
+
+function Add(a,b:LongNum; na,nb:Integer; out nrez:Integer):LongNum;
+var
+  n,i,c:Integer;
+  rez:LongNum;
+begin
+  rez:=Zero;
+
+  //Длина результата равна длине большего оеранда и, можт быть, +1
+  if na>=nb then
+    n:=na
+  else
+    n:=nb;
+
+  for i := 100 downto 101-n do
+  begin
+    c:=rez[i]+a[i]+b[i];       //c= перенос + цифра первого операнда + цифра воторого операнда
+    rez[i]:= c mod 10;         //Значение разряда
+    rez[i-1]:=  c div 10;      // Перенос
+  end;
+
+
+ // Возможно необходимо увеличит длину на 1 (перенос в последем разряде)
+ if rez[100-n] <> 0 then
+    nrez:= n+1
+ else
+    nrez:=n;
+ Add:=rez;
+end;
+
+function Min(a,b:LongNum; na,nb:Integer; out nrez:Integer):LongNum;
+var
+  n,i,c:Integer;
+  rez:LongNum;
+begin
+  rez:=Zero();
+
+  n:=na;
+
+  for i := 100 downto 101-n do
+  begin
+    c:=a[i]-b[i]+rez[i];            //В с сразу учитываем заём
+    if c< 0 then                    //Если разность отрицательная необходим заём
+    begin
+      rez[i]:=  (10+c);             //В разряд декущий записываем 10 + разность
+      rez[i-1]:=-1;                 //От следующего отнимаем 1
+    end
+    else
+      rez[i]:=  c;                  //Если положительная - просто прибавляем к разряду
+  end;
+
+  nrez:=GetN(rez,n);                //Длина из функции - она может быть любой
+  Min:=rez;
+end;
+
+function Multiply(a,b:LongNum; na,nb:Integer; out nrez:Integer):LongNum;
+var
+  i,j,c,n:Integer;
+  rez,t:LongNum ;
+begin
+    rez:=Zero;
+    t:=Zero;
+    n:=0;
+
+  for i:= 100 downto 101-nb do      //Закрепяем цифру множимого
+    for j:= 100 downto 101-na do    //Закрепляем цифру множителя
+    begin
+       c:=a[j]*b[i];
+       t[j+i-100]:=c mod 10;        //t[100-(100-i)-(100-j)] - Смещение с учётом обоих операндов
+       t[j+i-100-1]:=c div 10;
+       rez:= Add(rez,t,n,102-(j+i-100),n);  //Слаживаем не полное произведение с рзультатм для предыдущей цифры
+       t:=Zero;
+    end;
+
+  //Определяем длину результата
+  if rez[101-n] <> 0 then
+    nrez:= n
+  else
+    nrez:=n-1 ;
+  Multiply:=rez;
+end;
+
+function Divide (a,b:LongNum; na,nb:Integer; out nrez:Integer):LongNum;
+var
+  i,n,nprez,tempn:Integer;
+  prez,t,rez:LongNum ;
+  x:TCompareRez;
+begin
+  t:=Zero;
+  prez:=Zero;
+  nrez:=0;
+  rez:=Zero;
+  n:=0;
+
+
+  // Записываем в переменную prez первые цифры из переменной а,
+  //    в количестве = длинне переменной b
+  for i:=n to n+nb-1 do
+    prez[101-nb+i-n]:=a[101-na+i-n];
+  nprez:=nb;
+  n:=n+nb;
+
+  repeat
+  begin
+    // Если число получилось меньше чем b, то дописывае в КОНЕЦ ещё 1 символ
+    if ((Compare(prez,Zero,nprez,nprez) <> Equally) and (n<>na)) and (Compare(prez,b,nprez,nb) = Less) then
+    begin
+      for i:= 101-nb to 100 do            //Смещаем все цифры влево
+        prez[i-1]:=prez[i];
+      prez[100]:=a[101-na+n];            //Дописывем
+      nprez:=nprez+1;
+      nrez:=nrez+1;
+      rez[nrez]:=0;
+      n:=n+1
+    end;
+
+    // Перебираем все цифры, чтобы найти ту, при умножении на которую а, получим
+    //  число большее prez. Эта цифра будет или равна или на 1 больше цифры частного
+    for i:=0 to 10 do
+    begin
+      t[100]:=i;
+      t:=Multiply(b,t,nb,1,tempn);
+
+      x:= Compare(t,prez,tempn,nprez);
+      if (x <> Less) then                 //Если b*i>=prez
+      begin
+        nrez:=nrez+1;                     //Увеличиваем длину результата
+        if x = More then                  //Если получили больше, то очередная цифра результата на 1 меньше i
+        begin
+          rez[nrez]:=i-1;
+          prez:= Min(prez,Min(t,b,tempn,nb,tempn),nprez,tempn,nprez)  //Дальше работаем с разностью prez и b*(i-1) (b*i-b=t-b)
+        end
+        else
+        begin                             //Если b*i=prez, то очередная цифра результата равна i
+          rez[nrez]:=i;
+          prez:=Min(prez,t,nprez,tempn,nprez)                         //Дальше работаем с разностью prez и b*i
+        end;
+        break;
+      end //if (x <> Less)
+    end;//for i:=1 to 10 do
+
+    //Перемещаем цифры рабочего числа(prez) и дописываем следуюшую цифру a
+    for i:= 101-nb to 100 do
+      prez[i-1]:=prez[i];
+    prez[100]:=a[101-na+n];
+    nprez:=nprez+1;
+    n:=n+1
+  end;
+  until n > na;
+
+  // Перемещаем цифры результата в конец массива rez
+  for i:=1 to nrez do
+  begin
+    rez[100-nrez+i]:=rez[i];
+    rez[i]:=0;
+  end;
+  Divide:=rez;
+
+  //Определяем длину результата
+  if rez[101-nrez] <> 0 then
+    nrez:= nrez
+  else
+    nrez:=nrez-1 ;
+end;
+
+begin
+  Write('Vvedite 1 chislo: ');
+  a:=EnterNum(na);
+
+  Write('Operator (+,-,*,/): ');
+  Readln(op);
+
+  Write('Vvedite 2 chislo: ');
+  b:=EnterNum(nb);
+
+  case op of
+    '-':rez:=Min(a,b,na,nb,nrez);
+    '+':rez:=Add(a,b,na,nb,nrez);
+    '*':rez:=Multiply(a,b,na,nb,nrez);
+    '/':rez:=Divide(a,b,na,nb,nrez)
+  else
+    rez:=Zero
+  end;
+
+  Write('Rezultat: ');
+  for i := 101-nrez to 100 do
+    Write(rez[i]);
+  Readln;
+end.
+ 

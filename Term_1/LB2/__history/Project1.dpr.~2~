@@ -1,0 +1,20 @@
+program Project1;
+
+var
+
+  x, p, q, counter: integer;
+  res: real;
+
+begin
+  writeln('¬ведите число P');
+  readln(p);
+  //writeln('¬ведите число Q');
+  //readln(q);
+  writeln(p mod 5);
+  if (p mod 2 = 0) xor (p mod 3 = 0) xor (p mod 5 = 0) then
+  begin
+    writeln('neprostoe');
+  end;
+  readln;
+
+end.

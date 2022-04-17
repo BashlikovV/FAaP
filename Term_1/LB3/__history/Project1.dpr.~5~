@@ -1,0 +1,58 @@
+Program LBR_3;
+
+Const
+  N = 20;
+
+Var
+  Mas: array [1 .. N] of Integer = (3, 3, 3, 5, 5, 5, 5, 5, 5, 7,
+                                    3, 3, 3, 5, 5, 5, 5, 5, 5, 7);
+  // Mas : array [1..N] of Integer;
+  Flag, Stop: Boolean;
+  CurrentValue, PreviouValue, NextValue: Integer;
+  First, Last: Integer;
+  j, i: Integer;
+
+Begin
+  i := 2;
+  Flag := False;
+  Stop := False;
+  While (i <= Length(Mas) - 1) do
+  Begin
+    while ((Flag = False) and (i <= Length(Mas))) do
+    Begin
+      CurrentValue := Mas[i];
+      NextValue := Mas[i + 1];
+      PreviouValue := Mas[i - 1];
+      if (CurrentValue = PreviouValue) and
+        (Stop = False) then
+      Begin
+        First := i - 1;
+        Stop := True;
+      End;
+      if ((CurrentValue <> NextValue) or (CurrentValue <> PreviouValue)) and
+        (Stop = True) then
+      Begin
+        if CurrentValue <> NextValue then
+        Begin
+          Last := i;
+        End
+        else
+        if CurrentValue <> PreviouValue then
+        Begin
+          Last := i - 1;
+        End;
+        if PreviouValue = Mas[i - 2] then
+        Begin
+          Flag := True;
+        End;
+      End;
+      i := i + 1;
+    End;
+    Flag := False;
+    Stop := False;
+    WriteLn('First = ', First, ' Last = ', Last);
+  End;
+
+  ReadLn;
+
+End.

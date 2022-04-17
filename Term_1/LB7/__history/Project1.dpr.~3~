@@ -1,0 +1,140 @@
+program Project1;
+
+Const
+  N = 20;
+  Comma = ',';
+  Whitespace = ' ';
+  Dot = '.';
+
+Var
+  I, J, K, M, F, D, C, Counter, Counter1: Integer;
+  Last, First: Integer;
+  Word: String[255];
+  Value: String[255];
+  Results: String[255];
+  Flag, Test: Boolean;
+
+begin
+  j := 0;
+  i := 1;
+  Counter := 1;
+  Counter1 := 1;
+  Flag := True;
+  Test := False;
+  Word := '                                                                                                        ';
+  Value := '                                                                                                        ';
+  Results := '                                                                                                       ';
+  WriteLn('Введите последовательность слов: ');
+  ReadLn(Word);
+  Last := Length(Word);
+
+  While I <= Last do  //Перебор элементов строки
+  Begin
+    if (Word[i] = Comma) or (Word[i] = Whitespace) then  //Если есьт запятая, записываем ее номер
+    Begin
+      Inc(Counter1);
+      J := i;
+    End;
+    if (Word[i] = Dot) then   //Если есть точка, то строка закончена
+    Begin
+      Inc(Counter1);
+      Last := I;
+    End;
+    Inc(i);
+  End;
+
+  if (Word[J] = Comma) then
+  Begin
+    Counter := Last - J - 2;  //Номер последнего - номер первого - знаки = длинна последнего слова
+    M := Counter;
+    for I := Last - 1 downto J + 2 do   //Получение последнего слова
+    Begin
+      Value[M] := Word[i];
+      Dec(M);
+    End;
+  End
+  else
+  if (Word[J] = Whitespace) then
+  Begin
+    Counter := Last - J - 1;
+    M := Counter;
+    for I := Last - 1 downto J + 1 do   //Получение последнего слова
+    Begin
+      Value[M] := Word[i];
+      Dec(M);
+    End;
+  End;
+
+  i := 1;
+  F := 1;
+  M := 0;
+  While I <= Last do
+  Begin
+    if (Word[i] <> Comma) and (Word[i] <> Whitespace) and (Word[i] <> Dot) then
+    Begin
+      Inc(M);
+      if (Word[i] <> Value[M]) then
+      Begin
+        First := i - D;
+        if (i <= Counter) then
+        Begin
+          First := i - D;
+        End;
+        Inc(D);
+
+        if (Word[i + 1] = Comma) then  //
+        Begin
+          J := i;
+          k := First;
+          While k <= J do
+          Begin
+            Results[F] := Word[k];
+            Inc(F);
+            Inc(k);
+          End;
+          Results[F] := Comma;
+          Inc(F);
+          D := 0;
+          M := 0;
+          Dec(Counter1);
+        End
+        else
+        if (Word[i + 1] = Whitespace) then  //
+        Begin
+          J := i;
+          k := First;
+          While k <= J do
+          Begin
+            Results[F] := Word[k];
+            Inc(F);
+            Inc(k);
+          End;
+          Results[F] := Comma;
+          Inc(F);
+          D := 0;
+          M := 0;
+          Dec(Counter1);
+        End;
+      End;
+    End;
+    
+    Inc(i);
+  End;
+
+  for i := 1 to Length(Results) do
+  Begin
+    if (Results[i] <> Whitespace) then
+    Begin
+      Write(Results[i]);
+    End;
+  End;
+
+  if Counter1 = 2 then
+  Begin
+    Write(Value);
+  End;
+
+  ReadLn;
+
+  // Если не встретилось равных слов - вывести последнее!
+end.

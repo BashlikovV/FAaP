@@ -1,0 +1,86 @@
+program Project1;
+
+{$APPTYPE CONSOLE}
+
+{$R *.res}
+
+uses
+  System.SysUtils;
+
+Var
+  Str, LastWord: String;
+  Word, Temp, InvLine: String;
+  I, J, M: integer;
+  Checker: boolean;
+
+begin
+  Repeat
+    Checker := True;
+    Write('Введите вашу строку: ');
+    ReadLn(Str);
+
+    if Length(Str) <> 0 then
+    begin
+      for I := 1 to length(Str) - 1 do
+      begin
+        if ((ord(Str[I]) < 96) or (ord(Str[I]) > 122))
+          and (Str[I] <> ' ') and (Str[I] <> ',') then
+          Checker := False;
+      end;
+    end
+    else Str := ' ';
+
+    if (Str = '') or ((pos(' ', Str) = 0) and
+      (pos(',', Str) = 0)) or (Checker = False)
+      or (Str[length(Str)] <> '.') then
+      writeln('Ошибка ввода');
+
+  Until (Checker = True) and (Str[length(Str)] = '.')
+    and (Str <> '') and ((pos(' ', Str) <> 0)
+    or (pos(',', Str) <> 0));
+
+  Temp := '';
+  I := Length(Str) - 1;
+  while (Str[I] <> ',') and (Str[I] <> ' ') do
+  begin
+    Temp := Temp + copy(Str, I, 1);
+    Dec(I);
+  end;
+  LastWord := '';
+  for I := 1 to length(Temp) do LastWord := Temp[I] + LastWord;
+
+  WriteLn('Исходная строка: ', Str);
+  WriteLn('Последнее слово: ', LastWord);
+  Write('Преобразованная строка: ');
+
+  I := 1;
+
+  while Str[I] <> '.' do
+  begin
+    if (Str[I] <> ' ') and (Str[I] <> ',') then
+    begin
+      Checker := True;
+      Word := '';
+      while (Str[I] <> ' ') and (Str[I] <> ',') and
+        (I < Length(Str)) do
+      begin
+        Word := Word + Str[I];
+        Inc(I);
+      end;
+
+      M := 1;
+      for J := Length(Word) downto 1 do
+      begin
+        InvLine := InvLine + Word[j];
+        Inc(M);
+      end;
+
+      if (Word = LastWord) and (Checker = true) then write(Word, ' ');
+    end
+    else inc(I);
+
+  end;
+
+  ReadLn;
+
+end.

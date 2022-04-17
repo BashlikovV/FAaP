@@ -1,0 +1,34 @@
+program project1;
+
+var
+  p, q, i, s, j, k: integer;
+  a: array [1 .. 100] of integer;
+
+begin
+  s := 1;
+  readln(p);
+  readln(q);
+  writeln('p=', p, ' q=', q);
+  for i := 2 to round(sqr(q)) + 1 do
+  begin
+    if q mod i = 0 then
+    begin
+      inc(k);
+      a[k] := i;
+      for j := 2 to round(sqr(i)) + 1 do
+      begin
+        if (p mod j = 0) and (i mod j = 0) then
+          s := 0;
+      end;
+      if s = 1 then
+        writeln('Делитель числа ', q, ': ', i,
+          ' -взаимно простое число с числом ', p);
+      s := 1;
+    end;
+  end;
+  writeln('Все делители числа q=', q);
+  for i := 1 to k do
+    writeln(' ', a[i]);
+    readln;
+
+end.

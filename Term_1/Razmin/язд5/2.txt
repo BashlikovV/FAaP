@@ -1,0 +1,2 @@
+}
+Writeln('Ny tu lox');

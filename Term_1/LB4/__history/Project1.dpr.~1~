@@ -1,0 +1,43 @@
+program Project1;
+
+{$APPTYPE CONSOLE}
+
+{$R *.res}
+
+uses
+  System.SysUtils;
+
+var
+  i, j: Integer;
+  S: array [0..9,0..9] of Integer;
+begin
+  for i := 0 to 9 do
+  begin
+    for j := 0 to 9 do
+    begin
+      if (j = 0) or (i = 0) then
+      begin
+        WriteLn('¬ведите ', i,', ', j, ' Ёлемент массива');
+        ReadLn(S[i,j]);
+        //Break;
+        //S[i,j] := 5;
+      end;
+    end;
+    j := 0;
+  end;
+
+  i := 0;
+
+  while (i <= 9) do
+  begin
+    while (j <= 9) do
+    Begin
+      Write(S[i,j], ' ');
+      j := j + 1;
+    End;
+    j := 0;
+    i := i + 1;
+    WriteLn;
+  end;
+  ReadLn;
+end.

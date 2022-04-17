@@ -1,0 +1,46 @@
+program Project1;
+
+{$APPTYPE CONSOLE}
+
+{$R *.res}
+
+uses
+  System.SysUtils;
+
+var
+  i, j: Integer;
+  k, m: Integer;
+  S: array [0..9,0..9] of Integer;
+
+begin
+  for i := 0 to 9 do
+  begin
+    for j := 0 to 9 do
+    begin
+      if (j = 0) or (i = 0) then
+      begin
+        S[i,j] := Random(10);
+      end;
+    end;
+    j := 0;
+  end;
+
+  i := 0;
+
+
+
+  WriteLn('Полученый массив: ');
+  while (i <= 9) do
+  begin
+    while (j <= 9) do
+    Begin
+      Write(S[i,j], ' ');
+      j := j + 1;
+    End;
+    j := 0;
+    i := i + 1;
+    WriteLn;
+  end;
+
+  ReadLn;
+end.

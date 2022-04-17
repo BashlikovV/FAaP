@@ -1,0 +1,59 @@
+program Project1;
+
+Const
+  N = 20;
+  Comma = ',';
+  Whitespace = ' ';
+  Dot = '.';
+
+Var
+  I, J, K, M, Counter: Integer;
+  Last: Integer;
+  Word: String;
+  Value: String;
+  Error: Integer;
+
+begin
+  Last := 20;
+  j := 0;
+  i := 1;
+  Value := '1234567891011121314151617181920';
+  WriteLn('Введите последовательность слов: ');
+  ReadLn(Word);
+  Last := Length(Word);
+
+  While I <= Last do  //Перебор элементов строки
+  Begin
+    if (Word[i] = Comma)then  //Если есьт запятая, записываем ее номер
+    Begin
+      J := i;
+    End
+    else
+    if (Word[i] = Whitespace) then  //Если есьт Пробел, увеличиваем счетчик
+    Begin
+      Inc(K);
+    End;
+    if (Word[i] = Dot) then   //Если есть точка, то строка закончена
+    Begin
+      Last := I;
+    End;
+    Inc(i);
+  End;
+
+  Counter := Last - J - 2;  //Номер последнего - номер первого - знаки
+
+  M := Counter;
+  for I := Last - 1 downto J + 2 do   //Получение последнего слова
+  Begin
+    Value[M] := Word[i];
+    Dec(M);
+  End;
+
+  M := Counter;
+  for i := 1 to M do  //Вывод последнего слова
+  Begin
+    Write(Value[i]);
+  End;
+
+  ReadLn;
+end.

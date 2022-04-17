@@ -1,0 +1,47 @@
+Program LBR_3;
+
+Const
+  N = 10;
+
+Var
+  Mas: array [1 .. N] of Integer = (1,2,3,3,3,5,5,5,5,7);
+  Flag: Boolean;
+  CurrentValue, PreviouValue, NextValue: Integer;
+  First, Last: Integer;
+  i, j: Integer;
+
+Begin
+  {while i <= N do
+  Begin
+    j := Random(3);
+    Mas[i] := j;
+    inc(i);
+  End;}
+
+  while True do
+  Begin
+  i := 1;
+  j := 2;
+  Flag := true;
+  While (j <= Length(Mas)) and (flag = true) do
+  Begin
+    CurrentValue := Mas[j];
+    PreviouValue := Mas[j - 1];
+    NextValue := Mas[j + 1];
+    if ((CurrentValue = PreviouValue) or (CurrentValue = NextValue)) and (flag = true) then
+    Begin
+      First := j;
+      Flag := False;
+    End
+    else if (CurrentValue <> NextValue) and (Flag = False) then
+    Begin
+      Last := j;
+    End;
+    Inc(j);
+  End;
+
+  WriteLn('First = ', First, ' Last = ', Last);
+  end;
+  ReadLn;
+
+End.

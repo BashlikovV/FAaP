@@ -1,0 +1,42 @@
+program Project1;
+
+{$APPTYPE CONSOLE}
+
+uses
+  SysUtils;
+var
+  v,pir,mon,p,u,i:Integer;
+  fl:Boolean;
+ // rez:Array[0..150,0..2] of Integer;
+
+begin
+  Write('Vvedite kolichestvo monahov: ');
+  Readln(mon);
+  Write('Vvedite kolichestvo piragov: ');
+  Readln(pir);
+
+  fl:=False; //≈сли false - задача не имеет решени€
+
+  for  v:=0 to (pir div 10) do   // перебираем число высших
+  begin
+	  p:=2*pir-mon-19*v;        // »з решени€ системы
+	  if ((p mod 9 = 0) and (p>=0)) then    // кол-во простых должно быть целым и >0
+    begin
+      u:= mon-(p div 9)-v  ;    //кол-во учеников
+      if(u>=0) then            // кол-во учеников должно быть целым и >0
+	    begin
+        WriteLn('');
+		    WriteLn('Vusshih monahov - '+inttostr(v));
+        WriteLn('Prostuh monahov - '+inttostr(p div 9));
+        WriteLn('Uchenikov - '+inttostr(u));
+        fl:=true ;    //Ќашли решение
+      end;
+	  end;
+  end;
+
+  if not fl then
+	  WriteLn('Pri zadannuh znacheniayh zadacha ne imeet resheniy');
+
+
+  Readln;
+end.

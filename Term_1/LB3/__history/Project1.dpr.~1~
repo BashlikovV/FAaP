@@ -1,0 +1,39 @@
+Program LBR_3;
+
+Const
+  N = 10;
+
+Var
+  Mas: array [1..N] of Integer = (1, 3, 3, 4, 5, 5, 5, 8, 9, 10);
+  AnswerMas: array [1..N] of Integer;
+  A, Counter, Final: Integer;
+  i, j: Integer;
+Begin
+  i := 1;
+  Counter := 1;
+  While j <= Length(Mas) - 1 do
+  Begin
+    if Mas[j] = Mas[j + 1] then
+    Begin
+      AnswerMas[j] := Mas[j];
+      AnswerMas[j + 1] := Mas[j + 1];
+    End
+    else
+    if Mas[j + 1] <> Mas[j + 2] then
+    Begin
+      Counter := Final;
+    End;
+    Inc(j);
+  End;
+  i := 0;
+  for i := 1 to Length(AnswerMas) do
+  Begin
+    if AnswerMas[i] <> 0 then
+    Begin
+
+    End;
+
+  End;
+
+  ReadLn;
+End.

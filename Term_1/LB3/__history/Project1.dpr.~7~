@@ -1,0 +1,66 @@
+Program LBR_3;
+
+Const
+  N = 20;
+
+Var
+  Mas: array [1 .. N] of Integer = (2, 3, 3, 5, 5, 5, 5, 5, 5, 2,
+                                    3, 3, 3, 5, 5, 5, 5, 5, 5, 7);
+  Flag, Stop: Boolean;
+  CurrentValue, PreviouValue, NextValue: Integer;
+  First, Last: Integer;
+  Counter: Integer;
+  j, i: Integer;
+
+Begin
+  i := 2;
+  Flag := False;
+  Stop := False;
+  While (i <= Length(Mas) - 1) do
+  Begin
+    while ((Flag = False) and (i <= Length(Mas))) do
+    Begin
+      CurrentValue := Mas[i];
+      NextValue := Mas[i + 1];
+      PreviouValue := Mas[i - 1];
+      if (CurrentValue = PreviouValue) and
+        (Stop = False) then
+      Begin
+        First := i - 1;
+        Stop := True;
+      End;
+      if ((CurrentValue <> NextValue) or (CurrentValue <> PreviouValue)) and
+        (Stop = True) then
+      Begin
+        if CurrentValue <> NextValue then
+        Begin
+          Last := i;
+        End
+        else
+        if CurrentValue <> PreviouValue then
+        Begin
+          Last := i - 1;
+        End;
+        if PreviouValue = Mas[i - 2] then
+        Begin
+          Flag := True;
+        End;
+      End;
+      i := i + 1;
+    End;
+    Flag := False;
+    Stop := False;
+    Counter := First;
+    Write('A sequence of equal numbers: ');
+    while COunter <= Last do
+    Begin
+      Write(Mas[First]:2);
+      Counter := Counter + 1;
+    End;
+    WriteLn(#10 ,'Number of First in the initial array = ', First, #10,
+            'Number of Last in the initial array = ', Last, #10);
+  End;
+
+  ReadLn;
+
+End.

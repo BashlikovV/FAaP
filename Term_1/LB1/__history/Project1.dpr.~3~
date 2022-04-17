@@ -1,0 +1,43 @@
+program Laba1;
+{$APPTYPE CONSOLE}
+
+var
+  N, Counter: Integer;
+  X, Sum, Final, Step: Real;
+
+  { N - Количество слагаемых,
+    Counter - счетчик вариантов ответа
+    X - значение x,
+    Sum - результат математической суммы,
+    Final - финальные значения функции,
+    Step - изменение значения x; }
+begin
+  X := 0.6;
+  Step := 0.1;
+  Counter := 0;
+  while X <= 1.1 do // Вход в цикл A1
+  begin
+    Sum := 0;
+    for N := 1 to 9 do // Вход в цикл B1
+      Sum := Sum + (20 + exp(Ln(exp(N * X - 3)) / N)) /                         //pascount = 9, sum = 213,363651740358
+        (Ln(N * X) + 3 / (5 + Ln(N * X) / Ln(2)));
+    { Вычисление значений математической суммы для N = 10,11,...,15 }
+
+    for N := 10 to 15 do // Вход в цикл B2
+    begin
+      Counter := Counter + 1;
+      Sum := Sum + (20 + exp(Ln(exp(N * X - 3)) / N)) /                         //pascount = 5, sum = 260,629974446483
+        (Ln(N * X) + 3 / (5 + Ln(N * X) / Ln(2)));
+      Final := Sum + exp(Ln(X + (N - 3) / N) / 3);
+      { Вычисление значений математической суммы для N = 10,11,...,15
+        и финального результата }
+
+      WriteLn(Counter, ')', ' x:= ', X:2:1, ' n:= ', N, ' f(k,x):= ',
+        Final:9:6);
+    end; // Выход из цикла B2
+    WriteLn('');
+    X := X + Step;
+  end; // Выход из цикла A1
+  ReadLn;
+
+end.

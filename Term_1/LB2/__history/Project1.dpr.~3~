@@ -1,0 +1,32 @@
+program Project1;
+
+var
+
+  x, p, counter: integer;
+  res, q: real;
+
+begin
+  writeln('¬ведите число P');
+  readln(p);
+  writeln('¬ведите число Q');
+  readln(q);
+  for counter := 0 to round(q) do
+  begin
+    x := counter + 1;
+    writeln('x:= ', x);
+  end;
+  for counter := 2 to round(sqrt(p)) do
+  begin
+    if p mod counter = 0 then
+    begin
+      writeln(p, ' :sostavnoe');
+    end
+    else
+    begin
+      writeln(p, ' :prostoe');
+    end;
+
+  end;
+  readln;
+
+end.

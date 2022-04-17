@@ -1,0 +1,75 @@
+program Project1;
+
+Const
+  N = 9;
+  M = 8;
+
+Var
+  Mas: array[1..N,1..M] of Integer = ((10,9,8,7,6,5,4,10),
+                                      (10,9,8,7,6,5,4,11),
+                                      (10,9,8,15,6,5,4,9),
+                                      (10,9,8,7,6,5,4,8),
+                                      (10,9,8,7,35,5,4,7),
+                                      (10,9,8,7,6,5,4,3),
+                                      (10,9,8,7,13,5,4,6),
+                                      (10,9,8,7,6,5,4,5),
+                                      (10,9,8,7,6,5,4,4));
+  I, J, C, p, k: Integer;
+  Temp: Integer;
+  Sum, Sum1: Integer;
+  Flag: Boolean;
+
+
+begin
+  for C := 1 to N do
+  Begin
+    for i := 2 to M do
+    Begin
+      for J := M downto I do
+      Begin
+        if Mas[C,j - 1] > Mas[C,j] then
+        Begin
+          Temp := Mas[C,j];
+          Mas[C,j] := Mas[C,j - 1];
+          Mas[C,j - 1] := Temp;
+        End;
+      End;
+    End;
+  End;
+
+  for C := 1 to N - 1 do
+  Begin
+    for i := 1 to M do
+    Begin
+      for p := 1 to M do
+      Begin
+        Sum := Sum + Mas[C,p];
+        Sum1 := Sum1 + Mas[C - 1,p];
+      End;
+      if Sum1 > Sum then
+      Begin
+        for k := 1 to m do
+        Begin
+          Temp := Mas[C,k];
+          Mas[C,k] := Mas[i,k];
+          Mas[i,k] := Temp;
+        End;
+      End;
+      Sum := 0;
+      Sum1 := 0;
+    End;
+    
+    
+  End;
+
+  for C := 1 to N do
+  Begin
+    for i := 1 to M do
+    Begin
+      Write(Mas[C,i]:3, ' ');
+    End;
+    WriteLn(#10);
+  End;
+
+  ReadLn;
+end.

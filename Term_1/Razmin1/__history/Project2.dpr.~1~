@@ -1,0 +1,32 @@
+Program Project1;
+
+var
+  Monks, LeadingNumber, SimpleNumber, DiscipleNumber, Cake: real;
+  LeadingPie, SimplePie, DisciplePie: real;
+
+begin
+  Write('Количество монахов: ');
+  Readln(Monks);
+  Write('Количество пирогов: ');
+  Readln(Cake);
+  DiscipleNumber := 0;
+  while DiscipleNumber <= Monks do
+  begin
+    SimpleNumber := (Cake + DiscipleNumber * (10 - 0.5) - Monks * 10) /
+      (5 - 10);
+    if (SimpleNumber - Int(SimpleNumber) < 0.00000001) and (SimpleNumber >= 0)
+    then
+    { Проверка, является ли SimpleNumber целым чилом }
+    begin
+      LeadingNumber := Monks - SimpleNumber - DiscipleNumber;
+      if LeadingNumber >= 0 then
+      begin
+        Writeln('Ведущих монахов ', LeadingNumber:3:0, ', обычных ',
+          SimpleNumber:3:0, ', учеников ', DiscipleNumber:3:0);
+      end;
+    end;
+    DiscipleNumber := DiscipleNumber + 1;
+  end;
+  Readln;
+
+end.

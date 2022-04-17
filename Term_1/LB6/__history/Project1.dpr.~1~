@@ -1,0 +1,36 @@
+var
+
+  year, Color, Animals:integer;
+
+begin
+  Writeln('Введите год: ГГГГ');
+  readln (Year);
+  Color := ((((Year+6) mod 10)+2)div 2);
+  Animals := ((Year+8) mod 12+1);
+  Write (year);
+  case Color of
+    1: Write (' Синий ');
+    2: Write (' Красный ');
+    3: Write (' Жёлтый ');
+    4: Write (' Белый ');
+    5: Write (' Чёрный ');
+  end;
+
+  Case Animals of
+    1: Write (' Крыса ');
+    2: Write (' Бык ');
+    3: Write (' Тигр ');
+    4: Write (' Заяц ');
+    5: Write (' Дракон ');
+    6: Write (' Змея ');
+    7: Write (' Лошадь ');
+    8: Write (' Овца ');
+    9: Write (' Обезьяна ');
+    10: Write (' Петух ');
+    11: Write (' Собака ');
+    12: Write (' Свинья ');
+  end;
+  Writeln;
+
+  readln;
+ end.

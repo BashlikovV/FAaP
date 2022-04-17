@@ -1,0 +1,110 @@
+program Project1;
+{In an array S of dimension N x N, the elements
+ of the first column and the first row are given.
+ Calculate all the elements of the array so that
+ each element located on the diagonal D would be
+ equal to the first element of the diagonal D.
+ (Consider diagonals parallel to the main diagonal)}
+
+{$APPTYPE CONSOLE}
+
+{$R *.res}
+
+uses
+  System.SysUtils;
+
+//Const values
+Const
+  N = 10;
+  //N - number of array elements
+
+Type
+  MyArray = array[1..N,1..N] of Integer;
+
+//Var values
+var
+  i, j, M, K: Integer;
+  S: MyArray;
+  Value: String;
+  Error: Integer;
+  {i, j - cycle counters
+   S - two-dimensional array of dimension NxN }
+
+begin
+
+  for i := 1 to N do
+  begin
+
+    //Start of the cycle A2
+    for j := 1 to N do
+    begin
+
+      //Checking j = 0 or i = 0
+      if (j = 1) or (i = 1) then
+      begin
+        Repeat
+          WriteLn('Type S[', i, ',', j, ']: ');
+          ReadLn(Value);
+          val(Value, S[i,j], Error);
+          If (Error <> 0) then
+            Writeln('Incorrect value');
+        Until (Error = 0);
+      end;
+    end;
+    j := 0;
+  end;
+
+  M := N;
+  K := N;
+  {filling in array elements parallel to the main
+   diagonal and start of the cycle B1 }
+  for i := 2 to K do
+  Begin
+    j := 2;
+    //Àilling in array elements under the main diagonal
+    S[i,j] := S[i - 1,j - 1];
+
+     //Start of the cycle B2
+     for j := 2 to M do
+     Begin
+
+       //Àilling in array elements over the main diagonal
+       S[i,j] := S[i - 1,j - 1];
+
+     //The end of the cycle B2
+     End;
+
+  //The end of the cycle B1
+  End;
+
+  {output of the final array to the console}
+  i := 1;
+  j := 1;
+  WriteLn('Ïîëó÷åíûé ìàññèâ: ');
+
+  {start of the C1 cycle that outputs the results
+   to the console }
+  while (i <= N) do
+  begin
+
+    //Start of the cycle C2
+    while (j <= N) do
+    Begin
+
+      //Output of array elements
+      Write(S[i,j]:6, ' ');
+      j := j + 1;
+
+    //The end of the cycle Ñ2
+    End;
+    j := 1;
+    i := i + 1;
+
+    //Output of array elements
+    WriteLn(' ' + #10);
+
+  //The end of the cycle Ñ1
+  end;
+
+  ReadLn;
+end.

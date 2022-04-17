@@ -1,0 +1,95 @@
+program Project1;
+
+{$APPTYPE CONSOLE}
+
+{$R *.res}
+
+Uses
+  System.SysUtils;
+
+Const
+  Dot = '.';
+  Whitespace = ' ';
+  Comma = ',';
+
+Var
+  Str, LastWord: String;
+  Word, Temp, InvLine: String;
+  I, J: integer;
+  Checker: boolean;
+
+Begin
+  Repeat
+    Checker := True;
+    Write('Введите вашу строку: ');
+    ReadLn(Str);
+
+    if Length(Str) <> 0 then
+    begin
+      for I := 1 to length(Str) - 1 do
+      begin
+        if ((ord(Str[I]) < 96) or (ord(Str[I]) > 122))
+          and (Str[I] <> Whitespace) and (Str[I] <> Comma) then
+          Checker := False;
+      end;
+    end
+    else Str := Whitespace;
+
+    if (Str = '') or ((pos(Whitespace, Str) = 0) and
+      (pos(Comma, Str) = 0)) or (Checker = False)
+      or (Str[length(Str)] <> Dot) then
+      writeln('Ошибка ввода');
+
+  Until (Checker = True) and (Str[length(Str)] = Dot)
+    and (Str <> '') and ((pos(Whitespace, Str) <> 0)
+    or (pos(Comma, Str) <> 0));
+
+  Temp := '';
+  I := Length(Str) - 1;
+  while (Str[I] <> Comma) and (Str[I] <> Whitespace) do
+  begin
+    Temp := Temp + copy(Str, I, 1);
+    Dec(I);
+  end;
+  LastWord := '';
+  for I := 1 to length(Temp) do LastWord := Temp[I] + LastWord;
+
+  WriteLn('Исходная строка: ', Str);
+  WriteLn('Последнее слово: ', LastWord);
+  Write('Преобразованная строка: ');
+
+  I := 1;
+
+  while Str[I] <> Dot do
+  begin
+    if (Str[I] <> Whitespace) and (Str[I] <> Comma) then
+    begin
+      Checker := True;
+      Word := '';
+      InvLine := '';
+      while (Str[I] <> Whitespace) and (Str[I] <> Comma) and
+        (I < Length(Str)) do
+      begin
+        Word := Word + Str[I];
+        Inc(I);
+      end;
+
+      for J := Length(Word) downto 1 do
+      begin
+        InvLine := InvLine + Word[j];
+      end;
+
+      for J := Length(Word) downto 1 do
+      Begin
+        if Word[j] <> InvLine[j] then Checker := False;
+      End;
+
+      if (Word <> LastWord) and (Checker = true) then write(Word, Whitespace);
+    end
+    else inc(I);
+
+  end;
+
+  ReadLn;
+
+end.

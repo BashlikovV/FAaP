@@ -1,0 +1,79 @@
+Program project1;
+
+Type
+  MasOfAnimals = (Rat, Bull, Tiger, Hare, Dragon, Snake, Horse, Sheep, Monkey,
+    Cock, Dog, Pig);
+  MasOfColors = (Blue, Red, Yellow, White, Black);
+
+var
+
+  Year, NumberOfColor, NumberOfAnimal: Integer;
+  Name: MasOfAnimals;
+  Color: MasOfColors;
+  Error: Integer;
+  Str: String;
+
+begin
+  While (Str <> 'N') do
+  Begin
+    Repeat
+      WriteLn('Type the number of year');
+      ReadLn(Str);
+      val(Str, Year, Error);
+      if (Year < 0) then Error := 1;
+      If (Error <> 0) then Writeln('Incorrect value');
+      Until (Error = 0);
+
+    NumberOfColor := ((((Year + 6) mod 10) + 2) div 2);
+    NumberOfAnimal := ((Year + 8) mod 12 + 1);
+
+    Write('Year ', Year, ' of ');
+
+    case NumberOfColor of
+      1:
+        Write('Blue');
+      2:
+        Write('Red');
+      3:
+        Write('Yellow');
+      4:
+        Write('White');
+      5:
+        Write('Black');
+    end;
+
+    Write(' ');
+
+    case NumberOfAnimal of
+      1:
+        Write('Rat');
+      2:
+        Write('Bull');
+      3:
+        Write('Tiger');
+      4:
+        Write('Hare');
+      5:
+        Write('Dragon');
+      6:
+        Write('Snake');
+      7:
+        Write('Horse');
+      8:
+        Write('Sheep');
+      9:
+        Write('Monkey');
+      10:
+        Write('Cock');
+      11:
+        Write('Dog');
+      12:
+        Write('Pig');
+    end;
+    WriteLn(#10 ,'Try again?(Y,N)');
+    ReadLn(Str);
+  End;
+
+  readln;
+
+end.
