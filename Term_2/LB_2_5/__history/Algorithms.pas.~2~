@@ -1,0 +1,150 @@
+unit Algorithms;
+
+interface
+type
+  TArray = array of Integer;
+  //TArray - тип одномерного массива
+
+  ResultStruct = record
+  //ResultStruct - —труктура содержаща€ результаты
+
+    Size: Integer;
+    //Size - размер массива
+
+    ArrType: string;
+    //ArrType - тип массива
+
+    ExperementalValue_1, ExperementalValue_2: Integer;
+    //ExperementalValue_1,_2 - эксперементальное кол-во сравнений
+
+    TheoreticalValue_1, TheoreticalValue_2: Integer;
+    //TheoreticalValue_1,_2 - теоретической кол-во сравнений
+  end;
+
+  procedure Swap(var AA, AB: Integer);
+  procedure Fill(var AArray_1, AArray_2: TArray; AParam: Integer);
+  procedure FloatingBubble(var AArray: TArray; var AComparisons: Integer);
+  procedure SimpleInserts(var AArray: TArray; var AComparisons: Integer);
+
+implementation
+
+procedure Swap(var AA, AB: Integer);
+{ Swap - ѕроцедура обмена двух элементов массива }
+var
+  Temp: Integer;
+  //Temp - переменна€ временного хранени€ значени€
+begin
+  Temp := AA;
+  AA := AB;
+  AB := Temp;
+end;
+
+procedure Fill(var AArray_1, AArray_2: TArray; AParam: Integer);
+{ Fill - ѕроцедура заполнени€ элементов массива в зависимовти от AParam }
+//AArray_1, AArray_2 - заполн€емые массивы
+//AParam - тип заполнени€
+var
+  i, k: Integer;
+  //i, k - счетчики цикла
+begin
+  case AParam of
+
+    //«аполнение рандомными числами
+    1:
+      for i := 0 to Length(AArray_1) do
+      begin
+        K := Random(3000);
+        AArray_1[i] := k;
+        AArray_2[i] := k;
+      end;
+
+    //«аполнение по возрастанию
+    2:
+      for i := 0 to Length(AArray_1) do
+      Begin
+        k := i + 1;
+        AArray_1[i] := k;
+        AArray_2[i] := k;
+      End;
+
+    //«аполнение по убыванию
+    3:
+      for i := 0 to Length(AArray_1) do
+      begin
+        k := Length(AArray_1) - i;
+        AArray_1[i] := k;
+        AArray_2[i] := k;
+      end;
+  end;
+end;
+
+procedure FloatingBubble(var AArray: TArray; var AComparisons: Integer);
+{ сортировка плавающим пузырьком }
+//AArray - сортируемый массив
+//AComparisons - количество сравнений
+var
+  i, k: Integer;
+  N: Integer;
+  IsSorted: Boolean;
+
+  //i, k - —четчики циклов
+  //N - размерность сортируемого массива
+  //isSorted - проверка на отсортированность элементов
+
+begin
+  IsSorted := False;
+  N := Length(AArray);
+
+  for i := 0 to N - 1 do
+  begin
+    If (AArray[i] > AArray[i + 1]) then
+    begin
+      Swap(AArray[i], AArray[i + 1]);
+      k := i;
+      IsSorted := True;
+      while (K > 0) and (IsSorted) do
+      begin
+        if (AArray[k - 1] > AArray[k]) then
+        begin
+          Swap(AArray[k - 1], AArray[k]);
+          Dec(K);
+          Inc(AComparisons);
+        end
+        else IsSorted := False;
+      end;
+    end;
+    Inc(AComparisons);
+  end;
+end;
+
+procedure SimpleInserts(var AArray: TArray; var AComparisons: Integer);
+{ сортировка простыми вставками }
+//TArray - сортируемый массив
+//AComparisons - количество сравнений
+var
+  i, j: Integer;
+  N: Integer;
+  x: Integer;
+  //i,j - счетчики циклов
+  //N - размерность массива
+  //X - переменна€ временного хранени€
+begin
+  N := Length(AArray);
+  i := 1;
+  while (i <= N) do
+  begin
+    x := AArray[i];
+    j := i - 1;
+    Inc(AComparisons, 2);
+    while (j >= 0) and (AArray[j] > x) do
+    begin
+      AArray[j + 1] := AArray[j];
+      j := j - 1;
+      AComparisons := AComparisons + 2;
+    end;
+    AArray[j + 1] := x;
+    Inc(i);
+  end;
+end;
+
+end.
