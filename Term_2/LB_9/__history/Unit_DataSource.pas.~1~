@@ -1,0 +1,17 @@
+unit Unit_DataSource;
+
+interface
+
+type
+  TType = (prVegetables, prFruits, prMeat);
+
+  TProduct = record
+    FName: string;
+    FIndex: Integer;
+    FCosts: Integer;
+    FType: TType;
+  end;
+
+implementation
+
+end.

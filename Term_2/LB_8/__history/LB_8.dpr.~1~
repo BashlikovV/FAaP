@@ -1,0 +1,42 @@
+program LB_8;
+
+{$APPTYPE CONSOLE}
+
+{$R *.res}
+
+uses
+  System.SysUtils;
+
+type
+  TMatrix = array of array of Integer;
+
+var
+  FMatrix: TMatrix;
+  FFile: Text;
+
+procedure Matrix_Initialize(var AMatrix: TMatrix);
+begin
+  SetLength(AMatrix, 4, 4);
+  AMatrix[0, 0] := 1;
+  AMatrix[0, 1] := 1;
+end;
+
+procedure PTriangle_Create(var AMatrix: TMatrix);
+var
+  i, j: Integer;
+
+begin
+  Matrix_Initialize(AMatrix);
+
+  for i := 1 to Length(AMatrix) do
+  begin
+    for j := 1 to High(AMatrix) do
+    begin
+      AMatrix[i, j] := AMatrix[i - 1, j] + AMatrix[i, j - 1];
+    end;
+  end;
+end;
+
+begin
+  PTriangle_Create(FMatrix);
+end.
